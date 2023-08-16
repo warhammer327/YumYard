@@ -1,12 +1,10 @@
 class Api::V1::FoodController < ApplicationController
   def index
-    food_list = Food.all
-    if Food.nil?
-      render json: {
-        error: "Error"
-      }
+    command = GetFoodList.call
+    if command.success?
+      render json: command, status: 200
     else
-      render json: food_list, status: 200
+      render json: "Error", status: 200
     end
   end
 
