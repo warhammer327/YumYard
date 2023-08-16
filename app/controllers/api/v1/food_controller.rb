@@ -12,21 +12,14 @@ class Api::V1::FoodController < ApplicationController
   end
 
   def create
-    food = Food.new(
-      name: req_body[:name],
-      image_url: req_body[:image_url],
-      stock_quantity: req_body[:stock_quantity],
-      price: req_body[:price],
-      category: req_body[:category]
-    )
-    if food.save
-      render json: food, status: 200
+    command = CreateFood.new(params[:food]).call
+    if command
+      render json: { result: command }, status: 200
     else
-      render json: {
-        error: "Error..."
-      }
+      render json: { errors: "Error" }, status: 422
     end
   end
+
 
   def update
   end
@@ -34,13 +27,5 @@ class Api::V1::FoodController < ApplicationController
   def destroy
   end
 
-  private
-  def req_body
-    params.require(:food).permit([
-      :name,
-      :image_url,
-      :stock_quantity,
-      :price,
-      :category])
-  end
+
 end
