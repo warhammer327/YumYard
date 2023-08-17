@@ -4,7 +4,7 @@ class Api::V1::FoodController < ApplicationController
     if command.success?
       render json: command, status: 200
     else
-      render json: "Error", status: 200
+      render json: "Error", status: 500
     end
   end
 
