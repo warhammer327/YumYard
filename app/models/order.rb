@@ -1,4 +1,4 @@
 class Order < ApplicationRecord
-  belongs_to :food
-  belongs_to :coupon, optional: true
+  has_one :coupon
+  has_one :food
 end

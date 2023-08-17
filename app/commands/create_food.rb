@@ -19,10 +19,9 @@ class CreateFood
     )
 
     if food.save
-      "Food Created"
+      "Food Created Successfully"
     else
       food.errors.add(:base, :failure)
-      nil
     end
   end
 end
