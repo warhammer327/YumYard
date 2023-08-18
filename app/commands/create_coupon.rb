@@ -38,6 +38,6 @@ class CreateCoupon
     end
   end
   def set_expiration
-    50.minutes.from_now
+    2.minutes.from_now
   end
 end
